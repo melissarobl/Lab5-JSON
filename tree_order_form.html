@@ -27,22 +27,22 @@
 
 <h2>Order Information</h2>
 
-<label for="homeowner-name">Homeowner Name</label><input id="homeowner-name" name="homeowner-name">
+<label for="homeowner-name">Homeowner Name</label><input id="homeowner-name" name="homeowner-name" >
 <br>
-<label for="homeowner-house-number">House Number</label><input id="homeowner-house-number" name="homeowner-house-number">
+<label for="homeowner-house-number">House Number</label><input id="homeowner-house-number" name="homeowner-house-number" >
 <br>
-<label for="homeowner-street-name">Street Name</label><input id="homeowner-street-name" name="homeowner-street-name">
+<label for="homeowner-street-name">Street Name</label><input id="homeowner-street-name" name="homeowner-street-name" >
 <br>
-<label for="city">City</label><input id="city" name="city">
+<label for="city">City</label><input id="city" name="city" >
 <br>
 <!-- All orders must be for Minnesota, so this input is not editable -->
 <label for="state">State</label><input id="state" name="state" value="Minnesota" disabled>
 <br>
-<label for="zipcode">Zip Code</label><input id="zipcode" name="zipcode">
+<label for="zipcode">Zip Code</label><input id="zipcode" name="zipcode" type="number">
 <br>
 
 <label for="tree-type">Tree Type</label>
-<select id="tree-type">
+<select id="tree-type"required>
     <!-- Unselectable message shown. Since this will be required, it forces the user to actually pick a tree, not just click submit for the default first option -->
     <option disabled selected value=""> Select a tree </option>
     <!-- The options that the user will be allowed to select, or choose from -->
@@ -87,13 +87,22 @@
         let zipCode = zipCodeInput.value // get the value from the input#zipcode
 
 
+        //  Validate that all six input and select elements have been completed
+        //  - check they all have a value:
+        // made them all 'required' to be sure that all elements were completed.
 
-        // TODO Validate that all six input and select elements have been completed
-        //  - check they all have a value
+        // if (name === '' || houseNumber === '' || streetName === '' || treeType === '' || city === '' || zipCode === '') {
+        //     return false
+        // }
+        //
+        // //Validate the zipcode is in the range 55001 and 56763 (ie in MN)
+        // //All MN zips are between 55001 and 56763
+        // if (zipCode >= 55001 && zipCode <= 56763 && !isNaN(zipCode)) {  // all conditions must be true.
+        //     // Found isNaN on stackoverflow:  https://stackoverflow.com/questions/175739/how-can-i-check-if-a-string-is-a-valid-number
+        // }
 
-        // TODO Validate the zipcode is in the range 55001 and 56763.
-        // to check that the zip code is in Minnesota.
-        // Make sure your script doesn't accept non-numeric input for the zip code.
+        // Make sure your script doesn't accept non-numeric input for the zip code:
+        // also added: type="number" in the HTML
 
         // Optional extra: add the class .error to any inputs with an error (and only inputs with an error)
         // to give the user visual feedback for which inputs need to be fixed or completed.
@@ -108,15 +117,49 @@
         // Add one error message for each problem with the form.
         //HINT: if length of array = 0, there are no errors
 
+        if (name === '') {
+            errors.push("Please enter your name")
+        }
+        if (houseNumber === '') {
+            errors.push("Please enter your house number")
+        }
+        if (streetName === '') {
+            errors.push("Please enter your street name")
+        }
 
-        // TODO - If there are any errors after checking all of the input elements,
-        // display an alert with all of the error messages. (Hint: use join)
-        // and then return from this function to prevent further processing
+        if (treeType === '') {
+            errors.push("Please choose the type of tree")
+        }
+
+        if (city === '') {
+            errors.push("Please enter your city")
+        }
+
+        if (zipCode === '') {
+            errors.push("Please enter your MN zip code")
+        } else {
+            if (zipCode <= 55001 && zipCode >= 56763) {
+                errors.push("Please enter a valid MN five digit zip code")
+            }
+        }
+        // If there are any errors after checking all the input elements,
+        if (errors.length > 0) {  //if all above are false, return true that the array is empty, so there are no errors
+            console.log(errors)
+            alert(errors.join('\n')) // display an alert with all the error messages. (Hint: use join) \n is for new line between
+            return false // and then return from this function to prevent further processing
+        }
 
 
-        // TODO - If there are no errors, use a template string to display an order
+        // If there are no errors, use a template string to display an order
         // summary in the order summary paragraph.
-
+    let orderSummary = `Name: ${name}<br>
+               Street Name: ${streetName}<br>
+               House Number: ${houseNumber}<br>
+               City: ${city}<br>
+               Zip Code: ${zipCode}<br>
+               Tree Type: ${treeType}<br>
+        `
+    orderSummaryParagraph.innerHTML = orderSummary
 
     })
 
