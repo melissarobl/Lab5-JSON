@@ -266,19 +266,24 @@ console.log(idsString)
 
 // write code to print the names of all of the prize categories (So your output would start physics, chemistry, medicine... ).
 
-nobelCategories = []
+nobelCategoriesArray = []
 nobelPrizes.forEach(function (prize) {
-    nobelCategories.push(prize.category)
+    nobelCategoriesArray.push(prize.category)
 })
 
-let nobelCategoriesList = nobelCategories.join(', ')
+let nobelCategoriesList = nobelCategoriesArray.join(', ')
 console.log(nobelCategoriesList)
 
 
-// TODO write code to print the total number of prize categories
+//write code to print the total number of prize categories
+console.log(nobelCategoriesArray.length)  //uses array from above to count the length of the prize category array
 
 
-
-
+nobelLaureatesArray = []
+nobelPrizes.forEach(function (prize) {
+    nobelLaureatesArray.push(prize.laureates)
+})
+let nobelLaureatesList = nobelLaureatesArray.length
+console.log(nobelLaureatesList)
 // TODO write code to count the total number of laureates from 2017.
 //   have a good look at how the JSON is structured, and think about what loop(s) you'll need to write.
