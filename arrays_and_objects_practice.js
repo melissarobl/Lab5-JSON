@@ -99,14 +99,6 @@ console.log("Gary Oldman's cat's name is: " + cats_and_owners[1].cat + ".")
 Source http://api.nobelprize.org/v1/prize.json?year=2017
 * */
 
-// TODO print the full name of the Literature Nobel laureate.
-// TODO print the ids of each of the Physics Nobel laureates. Your code should still work without modification if a laureate was added, or removed.
-// TODO write code to print the names of all of the prize categories (So your output would start physics, chemistry, medicine... ).
-// TODO write code to print the total number of prize categories
-// TODO write code to count the total number of laureates from 2017.
-//   have a good look at how the JSON is structured, and think about what loop(s) you'll need to write.
-
-
 let nobel_prize_winners_2017 = {
     "prizes":[
         {
@@ -196,8 +188,8 @@ let nobel_prize_winners_2017 = {
             "laureates":[
                 {
                     "id":"947",
-                    "firstname":"Kazuo",
-                    "surname":"Ishiguro",
+                    "firstname":"Kazuo",  //need this name for question 1
+                    "surname":"Ishiguro", //also need this name for question 1
                     "motivation":"\"who, in novels of great emotional force, has uncovered the abyss beneath our illusory sense of connection with the world\"",
                     "share":"1"
                 }
@@ -231,3 +223,62 @@ let nobel_prize_winners_2017 = {
         }
     ]
 }
+
+// print the full name of the Literature Nobel laureate. Drill down to information
+let nobelPrizes = nobel_prize_winners_2017.prizes
+//gets the array of prize property and assigns it to the variable 'nobelPrizes'
+
+let literature = nobelPrizes[3]
+// get the  (0, 1, 2,) 3rd object of array, which is literature
+// literature is an object
+
+let literatureWinnerDetails = literature.laureates
+//this is an array
+
+let litWinnerName = literatureWinnerDetails[0]
+//litWinnerName is an object
+
+let litWinnerFirstName = litWinnerName.firstname
+//first name is a property of litWinnerName
+
+let litWinnerSurname = litWinnerName.surname
+//surname is a property of litWinnerName
+
+
+console.log("The full name of the Literature Laureate in 2017 is " + litWinnerFirstName + " " + litWinnerSurname + ".")
+
+
+// print the ids of each of the Physics Nobel laureates. Your code should still work without modification if a laureate was added, or removed.
+let physics = nobelPrizes[0]
+
+let physicsDetails = physics.laureates
+
+let physicsIDs = []
+physicsDetails.forEach( function(laureate){ //loop through physics list. Each laureate is one loop
+    physicsIDs.push(laureate.id)  //same format as weather.js example
+})
+let idsString = physicsIDs.join(', ')  //place comma in between IDs
+console.log(idsString)
+
+//console.log('The physics IDs are: ' + idsString + ".")
+//use above code if you want to print out a full sentence with the IDs listed
+
+
+// write code to print the names of all of the prize categories (So your output would start physics, chemistry, medicine... ).
+
+nobelCategories = []
+nobelPrizes.forEach(function (prize) {
+    nobelCategories.push(prize.category)
+})
+
+let nobelCategoriesList = nobelCategories.join(', ')
+console.log(nobelCategoriesList)
+
+
+// TODO write code to print the total number of prize categories
+
+
+
+
+// TODO write code to count the total number of laureates from 2017.
+//   have a good look at how the JSON is structured, and think about what loop(s) you'll need to write.
