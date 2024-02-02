@@ -14,6 +14,7 @@ for( let x = 0 ; x < birds.length ; x++) {
     console.log(bird.toUpperCase())
 }
 
+
 //let whereIsZ = text.indexOf('z') // Index of first batch character or -1 if not found
 
 // let whisperAndShout = whisper.concat(shout) //Join strings together

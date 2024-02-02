@@ -224,7 +224,7 @@ let nobel_prize_winners_2017 = {
     ]
 }
 
-// print the full name of the Literature Nobel laureate. Drill down to information
+// D1. Print the full name of the Literature Nobel laureate. Drill down to information
 let nobelPrizes = nobel_prize_winners_2017.prizes
 //gets the array of prize property and assigns it to the variable 'nobelPrizes'
 
@@ -233,7 +233,7 @@ let literature = nobelPrizes[3]
 // literature is an object
 
 let literatureWinnerDetails = literature.laureates
-//this is an array
+//this is an array, so you can get the property directly with object.property
 
 let litWinnerName = literatureWinnerDetails[0]
 //litWinnerName is an object
@@ -244,12 +244,12 @@ let litWinnerFirstName = litWinnerName.firstname
 let litWinnerSurname = litWinnerName.surname
 //surname is a property of litWinnerName
 
-
 console.log("The full name of the Literature Laureate in 2017 is " + litWinnerFirstName + " " + litWinnerSurname + ".")
 
 
-// print the ids of each of the Physics Nobel laureates. Your code should still work without modification if a laureate was added, or removed.
-let physics = nobelPrizes[0]
+
+// D2. Print the ids of each of the Physics Nobel laureates. Your code should still work without modification if a laureate was added, or removed.
+let physics = nobelPrizes[0] //physics will be the first [0]
 
 let physicsDetails = physics.laureates
 
@@ -264,26 +264,42 @@ console.log(idsString)
 //use above code if you want to print out a full sentence with the IDs listed
 
 
-// write code to print the names of all of the prize categories (So your output would start physics, chemistry, medicine... ).
+// D3. Write code to print the names of all of the prize categories (So your output would start physics, chemistry, medicine... ).
 
-nobelCategoriesArray = []
+nobelCategoriesArray = []  //create empty array
+
+/* Loop through nobelPrizes array (from above) and each loop is one prize.
+Add the category property to the NobelCategoriesArray */
 nobelPrizes.forEach(function (prize) {
     nobelCategoriesArray.push(prize.category)
 })
 
-let nobelCategoriesList = nobelCategoriesArray.join(', ')
+let nobelCategoriesList = nobelCategoriesArray.join(', ')  //put a comma between the array items
 console.log(nobelCategoriesList)
 
 
-//write code to print the total number of prize categories
-console.log(nobelCategoriesArray.length)  //uses array from above to count the length of the prize category array
+//D4. Write code to print the total number of prize categories
+console.log("There are " + nobelCategoriesArray.length + " prize categories total.")  //uses array from above to count the length of the prize category array
 
 
-nobelLaureatesArray = []
-nobelPrizes.forEach(function (prize) {
-    nobelLaureatesArray.push(prize.laureates)
-})
-let nobelLaureatesList = nobelLaureatesArray.length
-console.log(nobelLaureatesList)
-// TODO write code to count the total number of laureates from 2017.
+
+// TODO D5. Write code to count the total number of laureates from 2017.
 //   have a good look at how the JSON is structured, and think about what loop(s) you'll need to write.
+//console.log(nobelPrizes)  //this shows all the laureates and their objects. We want to count the objects
+
+nobelLaureatesObjectsArray = [] //create an empty array to store the Laureate Objects from Prizes
+
+nobelPrizes.forEach(function (prize) {  //loop through nobelPrizes array and each loop is a prize
+    nobelLaureatesObjectsArray.push(prize.laureates.length) //calculate the length of each of the loops of the laureates in each prize object and put it in the array
+})
+
+let totalLaureates = 0  //initialize count to zero
+nobelLaureatesObjectsArray.forEach( function(laureate) { //take array from above nobelLaureatesObjectsArray and loop through it
+    totalLaureates += laureate  //each loop is considered a laureate. Add each loop to the running total and store in variable
+})
+
+console.log("There are " + totalLaureates + " laureates from 2017.")
+
+
+
+
