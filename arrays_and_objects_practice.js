@@ -302,4 +302,19 @@ console.log("There are " + totalLaureates + " laureates from 2017.")
 
 
 
+//option 2:
+// let totalLaureates = 0  //initialize count to zero to start
+// nobelPrizes.forEach(function (prize){ //loop through the prizes
+//     let laureatesInPrize = prize.laureates //the laureates property of each prize loop is given the variable laureatesInPrize
+//     totalLaureates += laureatesInPrize.length  //add number of laureates in current loop prize to array and store it in variable
+//
+// })
+// console.log("There are " + totalLaureates + " laureates from 2017.")
 
+//option 3:
+// nobelPrizes.forEach(function (prize) {  //loop through prizes
+//     prize.laureates.forEach(function (laureate) {
+//         nobelLaureatesObjectsArray.push(laureate)  // add laureates arrays to empty array
+//     })
+// })
+// let numberOfLaureates = nobelLaureatesObjectsArray.length  //get the length of the array to find the number of laureates
