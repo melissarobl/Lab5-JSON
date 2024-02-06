@@ -57,7 +57,7 @@
 <h2>Order Summary</h2>
 
 <p id="order-summary">
-    <!-- TODO Use JavaScript to display the order information,
+    <!-- Use JavaScript to display the order information,
         only if all the required information is entered  -->
 </p>
 
@@ -89,19 +89,7 @@
 
          //Validate that all six input and select elements have been completed
         // - check they all have a value:
-        //???? change them in HTML to say 'required'- no- some browsers don't support (Safari)
-
-        // if (name === '' || houseNumber === '' || streetName === '' || treeType === '' || city === '' || zipCode === '') {
-        //     alert("Please complete all fields")
-        //}
-
-        //Validate the zipcode is in the range 55001 and 56763 (ie in MN)
-        //All MN zips are between 55001 and 56763
-        // if (zipCode <= 55001 || zipCode >= 56763 || isNaN(zipCode)) {  // all conditions must be true.
-        //     alert("Please enter a valid Minnesota zip code")
-        // }
-
-        // Make sure your script doesn't accept non-numeric input for the zip code:
+        // change them in HTML to say 'required'?- NO- some browsers don't support (Safari)
 
         // Optional extra: add the class .error to any inputs with an error (and only inputs with an error)
         // to give the user visual feedback for which inputs need to be fixed or completed.
@@ -132,7 +120,7 @@
 
         if (zipCode === '') {
             errors.push("Please enter your MN zip code")
-        } else {
+        } else {  // Make sure your script doesn't accept non-numeric input for the zip code:
             if (zipCode <= 55001 || zipCode >= 56763 || isNaN(zipCode)) { // Found 'isNaN' on stackoverflow:  https://stackoverflow.com/questions/175739/how-can-i-check-if-a-string-is-a-valid-number
                 errors.push("Please enter a valid MN five-digit zip code")
             }
@@ -154,14 +142,14 @@
         // If there are no errors, use a template string to display an order
         // summary in the order summary paragraph.
         //use <br> because this is HTML, and \n does not mean new line in HTML
-        let orderSummary = `Name: ${name}<br>
+        orderSummaryParagraph.innerHTML = `Your order has been received! <br>
+               Name: ${name}<br>
                House Number: ${houseNumber}<br>
                Street Name: ${streetName}<br>
                City: ${city}<br>
                Zip Code: ${zipCode}<br>
                Tree Type: ${treeType}<br>
         `
-        orderSummaryParagraph.innerHTML = orderSummary
 
     })
 

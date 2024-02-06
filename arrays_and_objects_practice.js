@@ -283,8 +283,8 @@ console.log("There are " + nobelCategoriesArray.length + " prize categories tota
 
 
 
-// TODO D5. Write code to count the total number of laureates from 2017.
-//   have a good look at how the JSON is structured, and think about what loop(s) you'll need to write.
+// D5. Write code to count the total number of laureates from 2017.
+// have a good look at how the JSON is structured, and think about what loop(s) you'll need to write.
 //console.log(nobelPrizes)  //this shows all the laureates and their objects. We want to count the objects
 
 nobelLaureatesObjectsArray = [] //create an empty array to store the Laureate Objects from Prizes
@@ -301,20 +301,3 @@ nobelLaureatesObjectsArray.forEach( function(laureate) { //take array from above
 console.log("There are " + totalLaureates + " laureates from 2017.")
 
 
-
-//option 2:
-// let totalLaureates = 0  //initialize count to zero to start
-// nobelPrizes.forEach(function (prize){ //loop through the prizes
-//     let laureatesInPrize = prize.laureates //the laureates property of each prize loop is given the variable laureatesInPrize
-//     totalLaureates += laureatesInPrize.length  //add number of laureates in current loop prize to array and store it in variable
-//
-// })
-// console.log("There are " + totalLaureates + " laureates from 2017.")
-
-//option 3:
-// nobelPrizes.forEach(function (prize) {  //loop through prizes
-//     prize.laureates.forEach(function (laureate) {
-//         nobelLaureatesObjectsArray.push(laureate)  // add laureates arrays to empty array
-//     })
-// })
-// let numberOfLaureates = nobelLaureatesObjectsArray.length  //get the length of the array to find the number of laureates
