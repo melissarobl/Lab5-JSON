@@ -17,8 +17,25 @@ let iss_location = {
     "message": "success"
 }
 
-console.log(iss_location.iss_position.latitude) // Extract the latitude value, and log it to the console.
-console.log(iss_location.iss_position.longitude)  // Extract the longitude value, and log it to the console.
+//option 1:
+// let position = iss_location.iss_position
+// console.log(position)
+//
+// let latitude = position.latitude
+// let longitude = position.longitude
+//
+// console.log(latitude)
+// console.log(longitude)
+
+//option 2:
+let latitudeValue = iss_location.iss_position.latitude  // Extract the latitude value, and log it to the console.
+let longitudeValue = iss_location.iss_position.longitude  // Extract the longitude value, and log it to the console.
+console.log(latitudeValue)
+console.log(longitudeValue)
+
+//option 3:
+//console.log(iss_location.iss_position.latitude) // Extract the latitude value, and log it to the console.
+//console.log(iss_location.iss_position.longitude)  // Extract the longitude value, and log it to the console.
 
 
 
@@ -35,8 +52,16 @@ let rates = {
     "BRL": 3.8959,
     "CAD": 1.5194
 }
+//option 1:  rates['CHF'] = 1.1787  //this notation is needed if the property name is not a valid JavaScript variable name
+// or when the property name is stored in a variable itself
 
+// option 2:  less typing but only works if the property name is a valid JS variable name
 rates.CHF = 1.1787  // write code to add a new property for Swiss Francs. Symbol is CHF, value is 1.1787.
+console.log(rates)
+
+//hint from class:
+//let audRate = rates['AUD']
+//console.log(audRate)
 
 //Option 1: Not rounded:
 // let euros = 100
@@ -66,21 +91,28 @@ console.log(euros1 + ' Euros is equal to ' + euroToAUD + ' Australian Dollars.')
 /* c. Use this JavaScript array of objects of cat owners, and their cats. Source, moderncat.com
  */
 
-let cats_and_owners = [
-    { name: "Bill Clinton", cat: "Socks" },
+let cats_and_owners = [  //array
+    { name: "Bill Clinton", cat: "Socks" },  //elements of the array are objects
     { name: "Gary Oldman", cat: "Soymilk" },
     { name: "Katy Perry", cat: "Kitty Purry" },
     { name: "Snoop Dogg", cat: "Miles Davis" }
 ]
 
 // Taylor Swift's cat is called 'Meredith'. Write code to add this data to the array.
-cats_and_owners.push( {name: "Taylor Swift", cat: "Meredith"})
+//option 1:  //better so that info is clearer and can be edited more easily in future, if needed.
+let taylorSwiftCat = {name: "Taylor Swift", cat: "Meredith"}
+cats_and_owners.push(taylorSwiftCat)
+console.log(cats_and_owners)
+
+//option 2:
+//cats_and_owners.push( {name: "Taylor Swift", cat: "Meredith"})
 
 // write a loop to print each cat owner, and their cat's name, one per line. Use the forEach style.
 cats_and_owners.forEach( function(person) {  //each loop in array is being called person
     let personName = person.name //the name property of each "person" loop is called personName
     let catName = person.cat //the cat property of each "person" loop is called catName
-    console.log(personName + "'s cat is called " + catName + ".")  //   Each line should have a message like "Snoop Dogg's cat is called Miles Davis"
+    console.log(`${personName}'s cat is called ${catName}`) //   Each line should have a message like "Snoop Dogg's cat is called Miles Davis"
+    //console.log(personName + "'s cat is called " + catName + ".")  //   Each line should have a message like "Snoop Dogg's cat is called Miles Davis" (another option to print)
 })
 
 //Print Gary Oldman's cat's name by reading the data in the appropriate array index, using [] notation
@@ -264,12 +296,12 @@ console.log(idsString)
 //use above code if you want to print out a full sentence with the IDs listed
 
 
-// D3. Write code to print the names of all of the prize categories (So your output would start physics, chemistry, medicine... ).
+// D3. Write code to print the names of all the prize categories (So your output would start physics, chemistry, medicine... ).
 
 nobelCategoriesArray = []  //create empty array
 
 /* Loop through nobelPrizes array (from above) and each loop is one prize.
-Add the category property to the NobelCategoriesArray */
+Add the category property of each loop to the NobelCategoriesArray */
 nobelPrizes.forEach(function (prize) {
     nobelCategoriesArray.push(prize.category)
 })
