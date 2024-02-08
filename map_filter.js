@@ -35,7 +35,7 @@ let catNameLengths2 = cats.map( (cat) => {
 
 let catNameLengths3 = cats.map( cat => cat.length )
 
-// Compare to the imperitive method...
+// Compare to the imperative method...
 
 let catNameLengths4 = []
 cats.forEach( function(cat) {
@@ -63,7 +63,7 @@ console.log(firstLetters)
 // last letter of each cat's name?
 
 let startsWithM = cats.map( cat => {
-    return (cat[0] === 'm' || cat[0] == 'M')
+    return (cat[0] === 'm' || cat[0] === 'M')
 })
 console.log(startsWithM)
 
@@ -183,17 +183,17 @@ console.log('Who is here?', presentStudents)
 // // Exercise: can you use filter to create an array of students who are NOT present?
 
 // // Filter - remove students meeting a condition
-let everyoneButClara = students.filter( student => student.name != 'clara')
+let everyoneButClara = students.filter( student => student.name !== 'clara')
 console.log(everyoneButClara)   // bye!
 
 // // If we have an example student,
 let brian = students[1]
 // Can remove with filter
-let everyoneButBrian = students.filter( student => student != brian )
+let everyoneButBrian = students.filter( student => student !== brian )
 console.log(everyoneButBrian)
 
 let everyoneButDuncan = students.filter( function(student) {
-    return student.name != 'duncan'
+    return student.name !== 'duncan'
 })
 
 console.log(everyoneButDuncan)

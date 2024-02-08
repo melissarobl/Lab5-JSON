@@ -16,7 +16,7 @@ console.log(message)
 //     let celsius = (f - 32) * 5 / 9
 //     return celsius.toFixed()  //rounds to nearest whole number
 //     //return celsius.toFixed(2) rounds to two decimal places
-//     //return celsius does not round at all
+//     //return Celsius does not round at all
 // }
 
 //let todayTemp = 75

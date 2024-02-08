@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minnesota</title>
+
+    <style>
+        #previewPopup {
+            visibility: hidden;
+            border: 1px gray solid;
+            position: absolute;
+            font-size: smaller;
+            background: whitesmoke;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Minnesota</h1>
+
+<p>Minnesota is a state in the <a class="page-preview-popup" href="https://en.wikipedia.org/wiki/Upper_Midwest">Upper Midwest</a>.
+    The largest city is <a class="page-preview-popup" href="https://en.wikipedia.org/wiki/Minneapolis">Minneapolis</a>.</p>
+
+<p>Minnesota is famous for lakes and contains part of the largest lake in the world by surface area,
+    <a class="page-preview-popup" href="https://en.wikipedia.org/wiki/Lake_Superior">Lake Superior<a>. Minnesota is often called the "Land of 10,000 Lakes."</a></a></p>
+
+<div id="previewPopup">
+    <div id="previewHTML"></div> <!-- show the preview text -->
+    <img id="previewImage"> <!-- show the preview image -->
+</div>
+
+<script>
+
+// find the popup div and elements inside it that will be customized with text and image from the link
+//in the listener, make an API request to a URL
+// what URL? need to do some array manipulation to work that out
+//get data from response (JSON form) and use that to set the html and image in the popup
+    let previewPopup = document.querySelector('#previewPopup')
+    let previewPopupHTML = previewPopup.querySelector('#previewHTML')
+    let previewImage = previewPopup.querySelector('#previewImage')
+
+    //list of all the 'a' elements that need an event listener
+let popupLinks = document.querySelectorAll('.page-preview-popup')
+
+    popupLinks.forEach( function(link) {
+        link.addEventListener('mouseover', function(event) {
+
+            // Get the href https://en.wikipedia.org/wiki/Upper_Midwest
+            let hrefForLink = link.href //a string
+
+            let hrefComponents = hrefForLink.split('/')  // need the last part, e.g. "Upper_Midwest" so split by / - what do we get?
+            console.log(hrefComponents)
+
+
+            // last element
+            let pageName = hrefComponents.pop() //remove last element
+            console.log(pageName) // e.g. 'Upper_Midwest'
+
+            // Generate URL for preview popup data
+            // e.g. https://en.wikipedia.org/api/rest_v1/page/summary/Upper_Midwest
+            let previewURL = 'https://en.wikipedia.org/api/rest_v1/page/summary/' + pageName//  what to add?
+
+            // make API request, show popup
+            fetch(previewURL).then( response => response.json() ).then( pagePreviewJson => {
+
+                console.log(pagePreviewJson)
+
+                // set content in popup
+                //text
+                let htmlForPopup = pagePreviewJson.extract_html
+                previewPopupHTML.innerHTML = htmlForPopup
+                // image
+                let previewImageSrc = pagePreviewJson.thumbnail.source
+                previewImage.src = previewImageSrc
+
+
+                // make visible
+                previewPopup.style.visibility = 'visible'
+
+                // position popup where mouse is
+                previewPopup.style.top = event.clientY + 'px'
+                previewPopup.style.left = event.clientX + 'px'
+            })
+
+        })
+
+        link.addEventListener('mouseout', function () {
+            // clear contents and hide popup
+            previewPopupHTML.innerHTML = ''
+            previewImage.src = ''
+            previewPopup.style.visibility = 'hidden'
+        })
+    })
+
+</script>
+
+
+
+</body>
+</html>
